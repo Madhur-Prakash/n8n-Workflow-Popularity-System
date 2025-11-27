@@ -11,11 +11,15 @@ const options = {
 };
 
 const req = http.request(options, (res) => {
-    // Silent success
+    console.log(`STATUS: ${res.statusCode}`);
+    res.setEncoding('utf8');
+    res.on('data', (chunk) => {
+        console.log(`BODY: ${chunk}`);
+    });
 });
 
-req.on('error', () => {
-    // Silent failure
+req.on('error', (e) => {
+    console.error(`problem with request: ${e.message}`);
 });
 
 req.write('{}');
