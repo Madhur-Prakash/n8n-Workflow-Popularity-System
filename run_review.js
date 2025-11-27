@@ -7,7 +7,7 @@ const options = {
     method: 'POST',
     headers: {
         'Content-Type': 'application/json',
-    },
+    }, 
 };
 
 const req = http.request(options, (res) => {
