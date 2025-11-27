@@ -11,7 +11,7 @@ LOGGER_INTEGRATION = 'composio logs'
 
 def logger(service, integration, level, priority, message):
     try:
-        res = requests.post(
+        res = requests.post( 
             "http://localhost:1027/logger/log",
             json={
                 "account_id": os.getenv("WATCHMAN_ACCOUNT_ID"),
