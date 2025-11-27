@@ -1,6 +1,6 @@
 const http = require('http');
 
-const options = { 
+const options = {
     hostname: 'localhost',
     port: 3001,
     path: '/review-diff',
