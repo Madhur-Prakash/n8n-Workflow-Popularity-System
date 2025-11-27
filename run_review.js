@@ -1,8 +1,5 @@
 const http = require('http');
 
-console.log('🔥 Git post-commit hook triggered');
-console.log('📡 Sending request to review server...');
- 
 const options = {
     hostname: 'localhost',
     port: 3001,
@@ -14,13 +11,12 @@ const options = {
 };
 
 const req = http.request(options, (res) => {
-    console.log('✅ Server responded with status:', res.statusCode);
+    // Silent success
 });
 
-req.on('error', (error) => {
-    console.log('❌ Failed to connect to server:', error.message);
+req.on('error', () => {
+    // Silent failure
 });
 
 req.write('{}');
 req.end();
-console.log('📤 Request sent to server');
