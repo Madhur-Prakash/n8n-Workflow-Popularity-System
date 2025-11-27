@@ -10,7 +10,6 @@ const options = {
     },
 };
 
-
 const req = http.request(options, (res) => {
     // Silent success
 });
