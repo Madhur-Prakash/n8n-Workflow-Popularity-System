@@ -20,7 +20,7 @@ const req = http.request(options, (res) => {
 req.on('error', (error) => {
     console.log('❌ Failed to connect to server:', error.message);
 });
-
+   
 req.write('{}');
 req.end();
 console.log('📤 Request sent to server');
