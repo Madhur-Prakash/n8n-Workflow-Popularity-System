@@ -5,7 +5,7 @@ load_dotenv()
     
 LOGGER_SERVICE = 'composio'
 LOGGER_INTEGRATION = 'composio log'
-
+ 
 def logger(service, integration, level, priority, message):  
     try:
         res = requests.post( 
