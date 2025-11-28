@@ -11,7 +11,7 @@ def logger(service, integration, level, priority, message):
         res = requests.post( 
             "http://localhost:1027/logger/log",
             json={
-                "account_id": os.getenv("WATCHMAN_ACCOUNT_ID"),
+                "account_id": os.getenv("WATCHMAN_ACCOUNT_ID"),    
                 "service": service,
                 "integration": integration,
                 "level": level,
