@@ -5,7 +5,7 @@ console.log('📡 Sending request to review server...');
 
 const options = {
     hostname: 'localhost',
-    port: 3001,
+    port: 3001, 
     path: '/review-diff',
     method: 'POST',
     headers: {
