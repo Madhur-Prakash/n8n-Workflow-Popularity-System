@@ -4,7 +4,7 @@ from dotenv import load_dotenv
 load_dotenv() 
     
 LOGGER_SERVICE = 'composio'
-LOGGER_INTEGRATION = 'composio log'
+LOGGER_INTEGRATION = 'composio log'  
 
 def logger(service, integration, level, priority, message):  
     try:
