@@ -65,7 +65,8 @@ docker-compose up -d
 docker-compose exec api uv run alembic upgrade head
 docker-compose exec api uv run python scripts/load_seed_data.py
 
-# ✅ Ready! Visit http://localhost:8000/docs
+# ✅ Ready! API available at localhost:8000
+# 📃 Docs at localhost:8000/docs
 ```
 
 </details>
@@ -95,7 +96,8 @@ uv run python scripts/load_seed_data.py
 # 5️⃣ Start development server
 uv run uvicorn app.main:app --reload
 
-# ✅ Ready! Visit http://localhost:8000/docs
+# ✅ Ready! API available at localhost:8000
+# 📃 Docs at localhost:8000/docs
 ```
 
 </details>

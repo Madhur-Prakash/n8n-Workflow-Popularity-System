@@ -123,7 +123,7 @@ Monitoring config
 ### **🎯 Most Popular Sections**
 
 <p>
-<a href="API.md#-live-api-demo"><img src="https://img.shields.io/badge/🧪-Try%20Live%20API-blue?style=for-the-badge&logo=swagger" alt="Try API"></a>
+<a href="API.md#-live-api-demo"><img src="https://img.shields.io/badge/🧪-API%20Endpoints-blue?style=for-the-badge&logo=swagger" alt="Try API"></a>
 <a href="DEPLOYMENT.md#-docker-deployment"><img src="https://img.shields.io/badge/🐳-Docker%20Deploy-green?style=for-the-badge&logo=docker" alt="Docker"></a>
 <a href="ARCHITECTURE.md#-system-architecture"><img src="https://img.shields.io/badge/🏗️-View%20Architecture-purple?style=for-the-badge&logo=kubernetes" alt="Architecture"></a>
 </p>
