@@ -17,7 +17,6 @@
   A production-ready system that automatically identifies trending n8n workflows using real APIs, intelligent scoring, and cross-platform analytics.
 </p>
 
----
 
 </div>
 
