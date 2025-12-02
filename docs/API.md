@@ -472,7 +472,6 @@ curl "http://localhost:8000/workflows?platform=youtube"  # Works!
 
 ## 🌐 **Interactive Documentation**
 
-<div align="center">
 
 <table>
 <tr>
@@ -495,7 +494,6 @@ curl "http://localhost:8000/workflows?platform=youtube"  # Works!
 - 🔍 **Search**: Find endpoints quickly
 - 📱 **Mobile Friendly**: Responsive design
 
-</div>
 
 ---
 

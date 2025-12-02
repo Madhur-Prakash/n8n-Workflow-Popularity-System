@@ -19,19 +19,6 @@
 
 ---
 
-### ⚡ **Quick Demo**
-
-```bash
-# 🚀 Get started in 60 seconds
-git clone <repository> && cd n8n-workflow-system
-uv sync && cp .env.example .env
-# Add your YOUTUBE_API_KEY to .env
-uv run alembic upgrade head && uv run python scripts/load_seed_data.py
-uv run uvicorn app.main:app --reload
-```
-
-**🎉 [Open Interactive API Docs](http://localhost:8000/docs) • [View System Stats](http://localhost:8000/stats)**
-
 </div>
 
 ---
@@ -228,7 +215,6 @@ n8n-workflow-system/
 
 ## 🔬 **Scoring Algorithms**
 
-<div align="center">
 
 ### 🎥 **YouTube Score**
 ```
@@ -251,8 +237,6 @@ score = search_volume×0.001 + trend_change_60d×10
 combined = sum(platform_scores)×0.7 + max(platform_scores)×0.3
 ```
 
-</div>
-
 ---
 
 ## 📊 **Data Collection Pipeline**
@@ -268,8 +252,6 @@ combined = sum(platform_scores)×0.7 + max(platform_scores)×0.3
 ---
 
 ## 🤖 **Automation & Scheduling**
-
-<div align="center">
 
 ### ⏰ **APScheduler (Recommended)**
 
@@ -291,13 +273,10 @@ curl -X POST "http://localhost:8000/admin/refresh" \
   -d '{"platforms": ["YouTube", "Forum", "Google"]}'
 ```
 
-</div>
-
 ---
 
 ## 📚 **Complete Documentation**
 
-<div align="center">
 
 | 📖 Document | 🎯 Purpose | 🔗 Link |
 |-------------|------------|---------|
@@ -310,8 +289,6 @@ curl -X POST "http://localhost:8000/admin/refresh" \
 ### 🌐 **Interactive Documentation**
 - **📱 Swagger UI**: [http://localhost:8000/docs](http://localhost:8000/docs)
 - **📚 ReDoc**: [http://localhost:8000/redoc](http://localhost:8000/redoc)
-
-</div>
 
 ---
 
@@ -366,7 +343,6 @@ docker-compose logs -f                # All services
 
 ## 🚀 **Production Deployment**
 
-<div align="center">
 
 ### 🌐 **Quick Production Deploy**
 
@@ -388,8 +364,6 @@ docker-compose -f docker-compose.prod.yml up -d
 - [ ] 💾 Backup strategy
 - [ ] 🚦 Rate limiting
 - [ ] 🔥 Firewall rules
-
-</div>
 
 ---
 
@@ -426,7 +400,6 @@ Smart invalidation
 
 ## 🤝 **Contributing**
 
-<div align="center">
 
 We welcome contributions! Here's how to get started:
 
@@ -438,13 +411,10 @@ We welcome contributions! Here's how to get started:
 6. 🚀 **Push** to branch: `git push origin feature/amazing-feature`
 7. 🎯 **Open** Pull Request
 
-</div>
-
 ---
 
 ## 📄 **License & Support**
 
-<div align="center">
 
 <p>
 <img src="https://img.shields.io/badge/License-MIT-green?style=for-the-badge" alt="MIT License">
@@ -456,8 +426,6 @@ We welcome contributions! Here's how to get started:
 - 🐛 **Issues**: [GitHub Issues](https://github.com/your-repo/issues)
 - 💬 **Discussions**: [GitHub Discussions](https://github.com/your-repo/discussions)  
 - 📚 **Documentation**: [docs/](docs/) folder
-
-</div>
 
 ---
 
@@ -476,5 +444,3 @@ We welcome contributions! Here's how to get started:
 ---
 
 *Built with ❤️ for the n8n community*
-
-</div>
