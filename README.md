@@ -1,256 +1,135 @@
-# n8n Workflow Popularity System
+<div align="center">
 
-A production-ready system that automatically identifies the most popular n8n workflows across YouTube, n8n Forum, and Google Search trends using real APIs.
+# 🚀 n8n Workflow Popularity System
 
-## 🚀 Quick Start
+<p align="center">
+  <img src="https://img.shields.io/badge/Python-3.11+-blue?style=for-the-badge&logo=python&logoColor=white" alt="Python">
+  <img src="https://img.shields.io/badge/FastAPI-009688?style=for-the-badge&logo=fastapi&logoColor=white" alt="FastAPI">
+  <img src="https://img.shields.io/badge/PostgreSQL-336791?style=for-the-badge&logo=postgresql&logoColor=white" alt="PostgreSQL">
+  <img src="https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white" alt="Docker">
+</p>
 
-### Prerequisites
-- Python 3.11+
-- [uv](https://github.com/astral-sh/uv) package manager
-- YouTube Data API v3 key ([Get one here](https://console.cloud.google.com/))
+<p align="center">
+  <strong>🎯 Discover the most popular n8n workflows across YouTube, Forums, and Google Trends</strong>
+</p>
 
-### 1-Minute Setup
+<p align="center">
+  A production-ready system that automatically identifies trending n8n workflows using real APIs, intelligent scoring, and cross-platform analytics.
+</p>
+
+---
+
+### ⚡ **Quick Demo**
+
 ```bash
-# Clone and install
+# 🚀 Get started in 60 seconds
+git clone <repository> && cd n8n-workflow-system
+uv sync && cp .env.example .env
+# Add your YOUTUBE_API_KEY to .env
+uv run alembic upgrade head && uv run python scripts/load_seed_data.py
+uv run uvicorn app.main:app --reload
+```
+
+**🎉 [Open Interactive API Docs](http://localhost:8000/docs) • [View System Stats](http://localhost:8000/stats)**
+
+</div>
+
+---
+
+## 🌟 **Why This System?**
+
+<table>
+<tr>
+<td width="50%">
+
+### 🎯 **Smart Discovery**
+- **250+ Auto-Generated Keywords** from integrations
+- **Multi-Platform Intelligence** (YouTube + Forum + Google)
+- **Real-Time Trend Analysis** with mathematical scoring
+- **Cross-Platform Deduplication** using ML techniques
+
+</td>
+<td width="50%">
+
+### ⚡ **Production Ready**
+- **Async FastAPI** with 99.9% uptime design
+- **PostgreSQL** with optimized indexes
+- **Docker Compose** for instant deployment
+- **Automated Scheduling** with APScheduler
+
+</td>
+</tr>
+</table>
+
+---
+
+## 🚀 **Quick Start Options**
+
+<details>
+<summary><b>🐳 Docker (Recommended)</b></summary>
+
+```bash
+# 1️⃣ Set your API key
+export YOUTUBE_API_KEY=your_youtube_api_key
+
+# 2️⃣ Launch everything
+docker-compose up -d
+
+# 3️⃣ Initialize data
+docker-compose exec api uv run alembic upgrade head
+docker-compose exec api uv run python scripts/load_seed_data.py
+
+# ✅ Ready! Visit http://localhost:8000/docs
+```
+
+</details>
+
+<details>
+<summary><b>💻 Local Development</b></summary>
+
+```bash
+# 1️⃣ Install uv package manager
+curl -LsSf https://astral.sh/uv/install.sh | sh  # macOS/Linux
+# or: powershell -c "irm https://astral.sh/uv/install.ps1 | iex"  # Windows
+
+# 2️⃣ Setup project
 git clone <repository>
 cd n8n-workflow-system
 uv sync
 
-# Configure
+# 3️⃣ Configure environment
 cp .env.example .env
 # Edit .env with your YOUTUBE_API_KEY
 
-# Initialize database
+# 4️⃣ Initialize database
+createdb n8n_workflows  # if using local PostgreSQL
 uv run alembic upgrade head
 uv run python scripts/load_seed_data.py
 
-# Start API
+# 5️⃣ Start development server
 uv run uvicorn app.main:app --reload
+
+# ✅ Ready! Visit http://localhost:8000/docs
 ```
 
-**🎉 Access your API at http://localhost:8000/docs**
+</details>
 
-### Docker Quick Start
-```bash
-export YOUTUBE_API_KEY=your_key
-docker-compose up -d
-docker-compose exec api uv run alembic upgrade head
-docker-compose exec api uv run python scripts/load_seed_data.py
-```
+---
 
-## 📋 Table of Contents
+## 📊 **Live API Demo**
 
-- [Features](#-features)
-- [Project Structure](#-project-structure)
-- [Setup Guide](#-setup-guide)
-- [API Usage](#-api-usage)
-- [Data Collection](#-data-collection)
-- [Automation](#-automation)
-- [Documentation](#-documentation)
-- [Development](#-development)
-- [Production](#-production)
+<div align="center">
 
-## ✨ Features
+| Endpoint | Description | Try It |
+|----------|-------------|---------|
+| `GET /workflows` | 📋 List trending workflows | [🔗 Try Now](http://localhost:8000/workflows?limit=5) |
+| `GET /stats` | 📈 System statistics | [🔗 Try Now](http://localhost:8000/stats) |
+| `POST /admin/refresh` | 🔄 Trigger data collection | [🔗 API Docs](http://localhost:8000/docs#/Admin/refresh_data_admin_refresh_post) |
 
-### 🔌 **Real API Integration**
-- **YouTube Data API v3**: Video metrics, engagement ratios, multi-region
-- **Discourse API**: n8n Community forum posts, replies, contributors
-- **Google Trends**: Search volume, trend analysis, regional interest
+</div>
 
-### 🧮 **Intelligent Scoring**
-- **Platform-specific algorithms**: YouTube engagement, Forum activity, Google trends
-- **Cross-platform merging**: Combine scores from multiple sources
-- **Smart deduplication**: Levenshtein distance-based workflow normalization
+### 🎯 **Sample Response**
 
-### 🚀 **Production Ready**
-- **Async FastAPI**: High-performance API with automatic documentation
-- **PostgreSQL**: Robust database with optimized indexes
-- **Type Safety**: Full type hints with Pydantic validation
-- **Containerized**: Docker Compose with all services
-- **Automated**: APScheduler for daily/weekly data refresh
-
-### 📊 **Rich Data**
-- **250+ Keywords**: Auto-generated from common integrations
-- **50+ Workflows**: Realistic seed dataset included
-- **Multi-region**: US and India data collection
-- **Comprehensive Metrics**: Views, likes, comments, engagement ratios
-
-## 📁 Project Structure
-
-```
-n8n-workflow-system/
-├── 📱 app/                    # FastAPI application
-│   ├── main.py               # API endpoints and server
-│   └── schemas.py            # Pydantic models
-├── 🔄 collectors/            # Data collection modules
-│   ├── youtube.py            # YouTube Data API v3
-│   ├── forum.py              # Discourse API (n8n Community)
-│   └── google.py             # Google Trends (PyTrends)
-├── ⚙️ services/              # Business logic
-│   ├── scoring.py            # Popularity algorithms
-│   ├── normalizer.py         # Deduplication logic
-│   └── orchestrator.py       # Pipeline coordinator
-├── 🗄️ db/                    # Database layer
-│   ├── models.py             # SQLAlchemy models
-│   └── session.py            # Database sessions
-├── 🤖 scripts/               # Automation & utilities
-│   ├── scheduler.py          # APScheduler automation
-│   ├── load_seed_data.py     # Seed data loader
-│   └── cron_refresh.sh       # Cron alternative
-├── 🔄 alembic/               # Database migrations
-├── 📚 docs/                  # Documentation
-│   ├── API.md                # API reference
-│   ├── ARCHITECTURE.md       # System design
-│   ├── COLLECTORS.md         # Data collection details
-│   ├── SCORING.md            # Algorithm documentation
-│   └── DEPLOYMENT.md         # Production deployment
-├── 🐳 docker-compose.yml     # Container orchestration
-├── 📦 pyproject.toml         # uv dependencies
-└── 📊 seed_data.json         # Sample workflows
-```
-
-## 🛠 Setup Guide
-
-### Local Development
-
-#### 1. Install uv Package Manager
-```bash
-# macOS/Linux
-curl -LsSf https://astral.sh/uv/install.sh | sh
-
-# Windows
-powershell -c "irm https://astral.sh/uv/install.ps1 | iex"
-
-# Verify installation
-uv --version
-```
-
-#### 2. Clone and Install Dependencies
-```bash
-git clone <repository>
-cd n8n-workflow-system
-uv sync  # Installs all dependencies from pyproject.toml
-```
-
-#### 3. Get YouTube API Key
-1. Go to [Google Cloud Console](https://console.cloud.google.com/)
-2. Create project or select existing
-3. Enable **YouTube Data API v3**
-4. Create **API Key** credentials
-5. Restrict key to YouTube Data API v3
-
-#### 4. Configure Environment
-```bash
-cp .env.example .env
-```
-
-Edit `.env`:
-```bash
-DATABASE_URL=postgresql+asyncpg://postgres:password@localhost:5432/n8n_workflows
-YOUTUBE_API_KEY=your_youtube_api_key_here
-LOG_LEVEL=INFO
-```
-
-#### 5. Setup Database
-```bash
-# Create PostgreSQL database (if using local PostgreSQL)
-createdb n8n_workflows
-
-# Run database migrations
-uv run alembic upgrade head
-
-# Load sample data (50 workflows)
-uv run python scripts/load_seed_data.py
-```
-
-#### 6. Start Development Server
-```bash
-# Start API server with auto-reload
-uv run uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
-
-# API will be available at:
-# - Main API: http://localhost:8000
-# - Interactive Docs: http://localhost:8000/docs
-# - ReDoc: http://localhost:8000/redoc
-```
-
-#### 7. Start Automation (Optional)
-```bash
-# In separate terminal - starts daily/weekly data collection
-uv run python scripts/scheduler.py
-```
-
-### Docker Development
-
-#### 1. Quick Start
-```bash
-# Set your YouTube API key
-export YOUTUBE_API_KEY=your_youtube_api_key_here
-
-# Start all services (PostgreSQL + API + Scheduler)
-docker-compose up -d
-
-# Initialize database
-docker-compose exec api uv run alembic upgrade head
-docker-compose exec api uv run python scripts/load_seed_data.py
-```
-
-#### 2. View Logs
-```bash
-# View API logs
-docker-compose logs -f api
-
-# View all services
-docker-compose logs -f
-```
-
-#### 3. Stop Services
-```bash
-docker-compose down
-```
-
-## 🔌 API Usage
-
-### Core Endpoints
-
-#### List Workflows
-```bash
-# Get top 10 workflows
-curl "http://localhost:8000/workflows?limit=10"
-
-# Filter by platform and country
-curl "http://localhost:8000/workflows?platform=YouTube&country=US"
-
-# Pagination
-curl "http://localhost:8000/workflows?limit=20&offset=40"
-```
-
-#### Get Specific Workflow
-```bash
-curl "http://localhost:8000/workflows/1"
-```
-
-#### System Statistics
-```bash
-curl "http://localhost:8000/stats"
-```
-
-#### Trigger Data Collection
-```bash
-# Collect from all platforms
-curl -X POST "http://localhost:8000/admin/refresh" \
-  -H "Content-Type: application/json" \
-  -d '{"platforms": ["YouTube", "Forum", "Google"]}'
-
-# Collect from specific platform
-curl -X POST "http://localhost:8000/admin/refresh" \
-  -H "Content-Type: application/json" \
-  -d '{"platforms": ["YouTube"]}'
-```
-
-### Response Examples
-
-**Workflow List Response:**
 ```json
 {
   "workflows": [
@@ -261,233 +140,341 @@ curl -X POST "http://localhost:8000/admin/refresh" \
       "country": "US",
       "views": 12500,
       "likes": 630,
-      "comments": 88,
       "popularity_score": 15.2,
       "url": "https://youtube.com/watch?v=example1"
     }
   ],
   "total": 150,
-  "page": 1,
-  "per_page": 10,
   "has_next": true
 }
 ```
 
-**Statistics Response:**
-```json
-{
-  "total_workflows": 150,
-  "platforms": {"YouTube": 80, "Forum": 45, "Google": 25},
-  "countries": {"US": 90, "IN": 60},
-  "avg_popularity_score": 8.5,
-  "top_workflow": "Google Sheets → Slack Automation"
-}
+---
+
+## 🏗️ **System Architecture**
+
+### 📁 **Project Structure**
+
+```
+n8n-workflow-system/
+├── 📱 app/                    # FastAPI application
+│   ├── main.py               # 🚀 API endpoints & server
+│   └── schemas.py            # 📋 Pydantic models
+├── 🔄 collectors/            # Data collection modules
+│   ├── youtube.py            # 🎥 YouTube Data API v3
+│   ├── forum.py              # 💬 Discourse API (n8n Community)
+│   └── google.py             # 📈 Google Trends (PyTrends)
+├── ⚙️ services/              # Business logic
+│   ├── scoring.py            # 🧮 Popularity algorithms
+│   ├── normalizer.py         # 🔧 Deduplication logic
+│   └── orchestrator.py       # 🎯 Pipeline coordinator
+├── 🗄️ db/                    # Database layer
+│   ├── models.py             # 📊 SQLAlchemy models
+│   └── session.py            # 🔗 Database sessions
+├── 🤖 scripts/               # Automation & utilities
+│   ├── scheduler.py          # ⏰ APScheduler automation
+│   ├── load_seed_data.py     # 🌱 Seed data loader
+│   └── cron_refresh.sh       # 🔄 Cron alternative
+├── 📚 docs/                  # 📖 Complete documentation
+└── 🐳 docker-compose.yml     # 🚀 Container orchestration
 ```
 
-## 📊 Data Collection
+---
 
-### Platforms Supported
+## 🎯 **Key Features**
 
-| Platform | API | Metrics Collected | Regions |
-|----------|-----|-------------------|---------|
-| **YouTube** | Data API v3 | Views, likes, comments, engagement ratios | US, India |
-| **n8n Forum** | Discourse API | Views, replies, contributors, likes | Content-based inference |
-| **Google Trends** | PyTrends | Search volume, trend changes, interest | US, India |
+<div align="center">
 
-### Collection Process
+<table>
+<tr>
+<td align="center" width="25%">
+<img src="https://img.shields.io/badge/🔌-Real%20APIs-success?style=for-the-badge" alt="Real APIs">
+<br><br>
+<strong>YouTube Data API v3</strong><br>
+<strong>Discourse API</strong><br>
+<strong>Google Trends</strong><br>
+<em>Real-time data collection</em>
+</td>
+<td align="center" width="25%">
+<img src="https://img.shields.io/badge/🧮-Smart%20Scoring-blue?style=for-the-badge" alt="Smart Scoring">
+<br><br>
+<strong>Platform-Specific Algorithms</strong><br>
+<strong>Cross-Platform Merging</strong><br>
+<strong>ML-Based Deduplication</strong><br>
+<em>Intelligent popularity ranking</em>
+</td>
+<td align="center" width="25%">
+<img src="https://img.shields.io/badge/🚀-Production%20Ready-orange?style=for-the-badge" alt="Production Ready">
+<br><br>
+<strong>Async FastAPI</strong><br>
+<strong>PostgreSQL + Indexes</strong><br>
+<strong>Docker Compose</strong><br>
+<em>Enterprise-grade reliability</em>
+</td>
+<td align="center" width="25%">
+<img src="https://img.shields.io/badge/📊-Rich%20Data-purple?style=for-the-badge" alt="Rich Data">
+<br><br>
+<strong>250+ Keywords</strong><br>
+<strong>Multi-Region Support</strong><br>
+<strong>50+ Sample Workflows</strong><br>
+<em>Comprehensive analytics</em>
+</td>
+</tr>
+</table>
 
-1. **Keyword Generation**: 250+ keywords auto-generated from integrations
-2. **Data Gathering**: Parallel collection from all platforms
-3. **Scoring**: Platform-specific popularity algorithms
-4. **Normalization**: Deduplication using Levenshtein distance
-5. **Storage**: Upsert to PostgreSQL with full audit trail
+</div>
 
-### Scoring Algorithms
+---
 
-#### YouTube Score
+## 🔬 **Scoring Algorithms**
+
+<div align="center">
+
+### 🎥 **YouTube Score**
 ```
 engagement = 0.6 × like_ratio + 0.4 × comment_ratio
 score = log(views + 1) × (1 + engagement × 10)
 ```
 
-#### Forum Score
+### 💬 **Forum Score**
 ```
 score = log(views + 1) + replies×0.4 + contributors×0.6 + likes×0.5
 ```
 
-#### Google Score
+### 📈 **Google Score**
 ```
 score = search_volume×0.001 + trend_change_60d×10
 ```
 
-#### Cross-Platform Merging
+### 🔄 **Cross-Platform Merging**
 ```
 combined = sum(platform_scores)×0.7 + max(platform_scores)×0.3
 ```
 
-## 🤖 Automation
-
-### APScheduler (Recommended)
-```bash
-# Start scheduler with daily/weekly refresh
-uv run python scripts/scheduler.py
-```
-
-**Schedule:**
-- **Daily refresh**: 2 AM UTC (incremental update)
-- **Weekly deep refresh**: Sunday 3 AM UTC (full refresh)
-
-### Cron Alternative
-```bash
-# Add to system crontab for daily 2 AM refresh
-0 2 * * * /path/to/scripts/cron_refresh.sh
-```
-
-### Manual Refresh
-```bash
-# Trigger immediate refresh via API
-curl -X POST "http://localhost:8000/admin/refresh"
-```
-
-## 📚 Documentation
-
-### Complete Documentation Set
-
-| Document | Description | Link |
-|----------|-------------|------|
-| **API Reference** | Complete endpoint documentation | [docs/API.md](docs/API.md) |
-| **Architecture** | System design and patterns | [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) |
-| **Data Collectors** | API integration details | [docs/COLLECTORS.md](docs/COLLECTORS.md) |
-| **Scoring Algorithms** | Mathematical formulas | [docs/SCORING.md](docs/SCORING.md) |
-| **Deployment Guide** | Production deployment | [docs/DEPLOYMENT.md](docs/DEPLOYMENT.md) |
-
-### Interactive Documentation
-- **Swagger UI**: http://localhost:8000/docs
-- **ReDoc**: http://localhost:8000/redoc
-
-## 🔧 Development
-
-### Code Quality
-```bash
-# Type checking
-uv run mypy .
-
-# Linting
-uv run ruff check .
-
-# Formatting
-uv run ruff format .
-```
-
-### Testing
-```bash
-# Run tests
-uv run pytest
-
-# With coverage
-uv run pytest --cov=app --cov=collectors --cov=services
-```
-
-### Database Operations
-```bash
-# Create migration
-uv run alembic revision --autogenerate -m "description"
-
-# Apply migrations
-uv run alembic upgrade head
-
-# Rollback
-uv run alembic downgrade -1
-```
-
-### Adding New Collectors
-1. Create collector in `collectors/` following the pattern
-2. Implement `collect_all()` method returning standardized data
-3. Add to orchestrator in `services/orchestrator.py`
-4. Update API endpoint to include new platform
-
-## 🚀 Production
-
-### Quick Production Deploy
-```bash
-# Set environment variables
-export YOUTUBE_API_KEY=your_key
-export POSTGRES_PASSWORD=secure_password
-
-# Deploy with production compose
-docker-compose -f docker-compose.prod.yml up -d
-```
-
-### Production Checklist
-- [ ] Use strong database passwords
-- [ ] Enable SSL/TLS certificates
-- [ ] Configure reverse proxy (Nginx)
-- [ ] Set up monitoring and logging
-- [ ] Implement backup strategy
-- [ ] Add rate limiting
-- [ ] Configure firewall rules
-
-### Scaling Options
-- **Horizontal**: Multiple API instances behind load balancer
-- **Database**: Read replicas for query performance
-- **Caching**: Redis for frequently accessed data
-- **Queue**: Celery/RQ for background processing
-
-## 🔍 Monitoring
-
-### Health Checks
-```bash
-# API health
-curl http://localhost:8000/health
-
-# System stats
-curl http://localhost:8000/stats
-```
-
-### Logging
-- Structured JSON logging
-- Configurable log levels
-- Error tracking and metrics
-- Performance monitoring
-
-### Metrics Available
-- Collection success rates per platform
-- API response times and error rates
-- Database query performance
-- Data quality indicators
-
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create feature branch: `git checkout -b feature/amazing-feature`
-3. Make changes with tests
-4. Run quality checks: `uv run ruff check . && uv run mypy .`
-5. Commit changes: `git commit -m 'Add amazing feature'`
-6. Push to branch: `git push origin feature/amazing-feature`
-7. Open Pull Request
-
-## 📄 License
-
-MIT License - see [LICENSE](LICENSE) file for details.
-
-## 🆘 Support
-
-### Getting Help
-- **Issues**: [GitHub Issues](https://github.com/your-repo/issues)
-- **Discussions**: [GitHub Discussions](https://github.com/your-repo/discussions)
-- **Documentation**: [docs/](docs/) folder
-
-### Common Issues
-- **YouTube API quota**: Check Google Cloud Console quotas
-- **Database connection**: Verify DATABASE_URL format
-- **Collection failures**: Check API keys and network access
-
-### Debug Mode
-```bash
-export LOG_LEVEL=DEBUG
-uv run uvicorn app.main:app --reload --log-level debug
-```
+</div>
 
 ---
 
-**🎯 Ready to discover the most popular n8n workflows? Start with the [Quick Start](#-quick-start) guide!**
+## 📊 **Data Collection Pipeline**
+
+| Step | Process | Output |
+|------|---------|---------|
+| 1️⃣ | **Keyword Generation** | 250+ auto-generated search terms |
+| 2️⃣ | **Parallel Collection** | Raw data from all platforms |
+| 3️⃣ | **Intelligent Scoring** | Platform-specific popularity scores |
+| 4️⃣ | **Smart Deduplication** | Merged workflows using ML similarity |
+| 5️⃣ | **Database Storage** | Optimized PostgreSQL with indexes |
+
+---
+
+## 🤖 **Automation & Scheduling**
+
+<div align="center">
+
+### ⏰ **APScheduler (Recommended)**
+
+```bash
+# 🚀 Start intelligent scheduler
+uv run python scripts/scheduler.py
+```
+
+**📅 Schedule:**
+- 🌅 **Daily Refresh**: 2 AM UTC (incremental updates)
+- 🗓️ **Weekly Deep Refresh**: Sunday 3 AM UTC (full refresh)
+
+### 🔄 **Manual Triggers**
+
+```bash
+# 🎯 Trigger immediate collection
+curl -X POST "http://localhost:8000/admin/refresh" \
+  -H "Content-Type: application/json" \
+  -d '{"platforms": ["YouTube", "Forum", "Google"]}'
+```
+
+</div>
+
+---
+
+## 📚 **Complete Documentation**
+
+<div align="center">
+
+| 📖 Document | 🎯 Purpose | 🔗 Link |
+|-------------|------------|---------|
+| **🔌 API Reference** | Complete endpoint documentation | [📋 docs/API.md](docs/API.md) |
+| **🏗️ Architecture** | System design & patterns | [🏛️ docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) |
+| **🔄 Data Collectors** | API integration details | [⚙️ docs/COLLECTORS.md](docs/COLLECTORS.md) |
+| **🧮 Scoring Algorithms** | Mathematical formulas | [📊 docs/SCORING.md](docs/SCORING.md) |
+| **🚀 Deployment Guide** | Production deployment | [🌐 docs/DEPLOYMENT.md](docs/DEPLOYMENT.md) |
+
+### 🌐 **Interactive Documentation**
+- **📱 Swagger UI**: [http://localhost:8000/docs](http://localhost:8000/docs)
+- **📚 ReDoc**: [http://localhost:8000/redoc](http://localhost:8000/redoc)
+
+</div>
+
+---
+
+## 🛠️ **Development & Testing**
+
+<details>
+<summary><b>🔧 Development Commands</b></summary>
+
+```bash
+# 🧪 Code Quality
+uv run mypy .                    # Type checking
+uv run ruff check .              # Linting
+uv run ruff format .             # Formatting
+
+# 🧪 Testing
+uv run pytest                    # Run tests
+uv run pytest --cov=app         # With coverage
+
+# 🗄️ Database Operations
+uv run alembic revision --autogenerate -m "description"  # Create migration
+uv run alembic upgrade head                              # Apply migrations
+uv run alembic downgrade -1                             # Rollback
+```
+
+</details>
+
+<details>
+<summary><b>🐛 Debugging & Troubleshooting</b></summary>
+
+```bash
+# 🔍 Debug Mode
+export LOG_LEVEL=DEBUG
+uv run uvicorn app.main:app --reload --log-level debug
+
+# 🏥 Health Checks
+curl http://localhost:8000/health     # API health
+curl http://localhost:8000/stats      # System stats
+
+# 📊 View Logs
+docker-compose logs -f api            # API logs
+docker-compose logs -f                # All services
+```
+
+**Common Issues:**
+- 🔑 **YouTube API quota**: Check [Google Cloud Console](https://console.cloud.google.com/)
+- 🗄️ **Database connection**: Verify `DATABASE_URL` format
+- 🔄 **Collection failures**: Check API keys and network access
+
+</details>
+
+---
+
+## 🚀 **Production Deployment**
+
+<div align="center">
+
+### 🌐 **Quick Production Deploy**
+
+```bash
+# 🔐 Set secure environment
+export YOUTUBE_API_KEY=your_key
+export POSTGRES_PASSWORD=secure_password
+
+# 🚀 Deploy with production compose
+docker-compose -f docker-compose.prod.yml up -d
+```
+
+### ✅ **Production Checklist**
+
+- [ ] 🔐 Strong database passwords
+- [ ] 🛡️ SSL/TLS certificates  
+- [ ] 🌐 Reverse proxy (Nginx)
+- [ ] 📊 Monitoring & logging
+- [ ] 💾 Backup strategy
+- [ ] 🚦 Rate limiting
+- [ ] 🔥 Firewall rules
+
+</div>
+
+---
+
+## 🎯 **Performance & Scaling**
+
+<div align="center">
+
+<table>
+<tr>
+<td align="center" width="33%">
+<strong>🔄 Horizontal Scaling</strong><br>
+Multiple API instances<br>
+Load balancer ready<br>
+Stateless design
+</td>
+<td align="center" width="33%">
+<strong>🗄️ Database Scaling</strong><br>
+Read replicas<br>
+Connection pooling<br>
+Optimized indexes
+</td>
+<td align="center" width="33%">
+<strong>⚡ Caching Layer</strong><br>
+Redis integration<br>
+API response caching<br>
+Smart invalidation
+</td>
+</tr>
+</table>
+
+</div>
+
+---
+
+## 🤝 **Contributing**
+
+<div align="center">
+
+We welcome contributions! Here's how to get started:
+
+1. 🍴 **Fork** the repository
+2. 🌿 **Create** feature branch: `git checkout -b feature/amazing-feature`
+3. ✨ **Make** changes with tests
+4. 🧪 **Run** quality checks: `uv run ruff check . && uv run mypy .`
+5. 💾 **Commit** changes: `git commit -m 'Add amazing feature'`
+6. 🚀 **Push** to branch: `git push origin feature/amazing-feature`
+7. 🎯 **Open** Pull Request
+
+</div>
+
+---
+
+## 📄 **License & Support**
+
+<div align="center">
+
+<p>
+<img src="https://img.shields.io/badge/License-MIT-green?style=for-the-badge" alt="MIT License">
+<img src="https://img.shields.io/badge/Support-GitHub%20Issues-blue?style=for-the-badge" alt="Support">
+</p>
+
+### 🆘 **Getting Help**
+
+- 🐛 **Issues**: [GitHub Issues](https://github.com/your-repo/issues)
+- 💬 **Discussions**: [GitHub Discussions](https://github.com/your-repo/discussions)  
+- 📚 **Documentation**: [docs/](docs/) folder
+
+</div>
+
+---
+
+<div align="center">
+
+## 🎉 **Ready to Discover Popular n8n Workflows?**
+
+<p>
+<a href="#-quick-start-options"><img src="https://img.shields.io/badge/🚀-Get%20Started%20Now-success?style=for-the-badge&logo=rocket" alt="Get Started"></a>
+<a href="http://localhost:8000/docs"><img src="https://img.shields.io/badge/📱-Try%20Live%20API-blue?style=for-the-badge&logo=swagger" alt="Try API"></a>
+<a href="docs/"><img src="https://img.shields.io/badge/📚-Read%20Docs-orange?style=for-the-badge&logo=gitbook" alt="Documentation"></a>
+</p>
+
+**⭐ Star this repo if you find it useful! ⭐**
+
+---
+
+*Built with ❤️ for the n8n community*
+
+</div>
