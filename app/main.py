@@ -6,7 +6,6 @@ from typing import Optional
 import logging
 from datetime import datetime
 import os
-
 from db.session import get_db, create_tables, create_database_if_not_exists
 from db.models import Workflow
 from app.schemas import (
