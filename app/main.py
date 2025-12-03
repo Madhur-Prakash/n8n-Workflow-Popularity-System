@@ -39,9 +39,12 @@ app.add_middleware(
 @app.on_event("startup")
 async def startup_event():
     """Initialize database on startup"""
-    await create_database_if_not_exists()
-    await create_tables()
-    logger.info("Application started successfully")
+    try:
+        await create_database_if_not_exists()
+        await create_tables()
+        logger.info("Application started successfully")
+    except Exception as e:
+        logger.error(f"Error during startup: {e}")
 
 @app.get("/", tags=["Root"])
 async def root():
@@ -70,91 +73,106 @@ async def get_workflows(
     db: AsyncSession = Depends(get_db)
 ):
     """Get workflows with filtering and pagination"""
+    try:
     
-    # Build query
-    query = select(Workflow)
-    
-    # Apply filters
-    if platform:
-        query = query.where(Workflow.platform.ilike(f"%{platform}%"))
-    if country:
-        query = query.where(Workflow.country.ilike(f"%{country}%"))
-    
-    # Get total count
-    count_query = select(func.count()).select_from(query.subquery())
-    total_result = await db.execute(count_query)
-    total = total_result.scalar()
-    
-    # Apply pagination and ordering
-    query = query.order_by(desc(Workflow.popularity_score)).offset(offset).limit(limit)
-    result = await db.execute(query)
-    workflows = result.scalars().all()
-    
-    page = offset // limit + 1
-    
-    return WorkflowListResponse(
-        workflows=workflows,
-        total=total,
-        page=page,
-        per_page=limit,
-        has_next=offset + limit < total,
-        has_prev=offset > 0
-    )
+        # Build query
+        query = select(Workflow)
+        
+        # Apply filters
+        if platform:
+            query = query.where(Workflow.platform.ilike(f"%{platform}%"))
+        if country:
+            query = query.where(Workflow.country.ilike(f"%{country}%"))
+        
+        # Get total count
+        count_query = select(func.count()).select_from(query.subquery())
+        total_result = await db.execute(count_query)
+        total = total_result.scalar()
+        
+        # Apply pagination and ordering
+        query = query.order_by(desc(Workflow.popularity_score)).offset(offset).limit(limit)
+        result = await db.execute(query)
+        workflows = result.scalars().all()
+        
+        page = offset // limit + 1
+        
+        return WorkflowListResponse(
+            workflows=workflows,
+            total=total,
+            page=page,
+            per_page=limit,
+            has_next=offset + limit < total,
+            has_prev=offset > 0
+        )
+    except Exception as e:
+        logger.error(f"Error fetching workflows: {e}")
+        raise HTTPException(status_code=500, detail="Internal Server Error")
 
 @app.get("/workflows/{workflow_id}", response_model=WorkflowResponse, tags=["Workflows"])
 async def get_workflow(workflow_id: int, db: AsyncSession = Depends(get_db)):
     """Get a specific workflow by ID"""
+    try:
     
-    query = select(Workflow).where(Workflow.id == workflow_id)
-    result = await db.execute(query)
-    workflow = result.scalar_one_or_none()
+        query = select(Workflow).where(Workflow.id == workflow_id)
+        result = await db.execute(query)
+        workflow = result.scalar_one_or_none()
+        
+        if not workflow:
+            raise HTTPException(status_code=404, detail="Workflow not found")
+        
+        return workflow
+
+    except Exception as e:
+        logger.error(f"Error fetching workflow: {e}")
+        raise HTTPException(status_code=500, detail="Internal Server Error")
     
-    if not workflow:
-        raise HTTPException(status_code=404, detail="Workflow not found")
-    
-    return workflow
 
 @app.get("/stats", response_model=StatsResponse, tags=["Statistics"])
 async def get_stats(db: AsyncSession = Depends(get_db)):
     """Get system statistics"""
-    
-    # Total workflows
-    total_result = await db.execute(select(func.count(Workflow.id)))
-    total_workflows = total_result.scalar()
-    
-    # Platform distribution
-    platform_query = select(Workflow.platform, func.count(Workflow.id)).group_by(Workflow.platform)
-    platform_result = await db.execute(platform_query)
-    platforms = {platform: count for platform, count in platform_result.all()}
-    
-    # Country distribution
-    country_query = select(Workflow.country, func.count(Workflow.id)).group_by(Workflow.country)
-    country_result = await db.execute(country_query)
-    countries = {country: count for country, count in country_result.all()}
-    
-    # Average popularity score
-    avg_query = select(func.avg(Workflow.popularity_score))
-    avg_result = await db.execute(avg_query)
-    avg_score = avg_result.scalar() or 0.0
-    
-    # Top workflow
-    top_query = select(Workflow.workflow_name).order_by(desc(Workflow.popularity_score)).limit(1)
-    top_result = await db.execute(top_query)
-    top_workflow = top_result.scalar()
-    
-    # Last updated
-    last_updated_query = select(func.max(Workflow.updated_at))
-    last_updated_result = await db.execute(last_updated_query)
-    last_updated = last_updated_result.scalar()
-    
-    return StatsResponse(
-        total_workflows=total_workflows,
-        platforms=platforms,
-        countries=countries,
-        avg_popularity_score=round(avg_score, 2),
-        top_workflow=top_workflow,
-        last_updated=last_updated
-    )
+    try:
+
+        # Total workflows
+        total_result = await db.execute(select(func.count(Workflow.id)))
+        total_workflows = total_result.scalar()
+
+        # Platform distribution
+        platform_query = select(Workflow.platform, func.count(Workflow.id)).group_by(Workflow.platform)
+        platform_result = await db.execute(platform_query)
+        platforms = {platform: count for platform, count in platform_result.all()}
+
+        # Country distribution
+        country_query = select(Workflow.country, func.count(Workflow.id)).group_by(Workflow.country)
+        country_result = await db.execute(country_query)
+        countries = {country: count for country, count in country_result.all()}
+
+        # Average popularity score
+        avg_query = select(func.avg(Workflow.popularity_score))
+        avg_result = await db.execute(avg_query)
+        avg_score = avg_result.scalar() or 0.0
+
+        # Top workflow
+        top_query = select(Workflow.workflow_name).order_by(desc(Workflow.popularity_score)).limit(1)
+        top_result = await db.execute(top_query)
+        top_workflow = top_result.scalar()
+
+        # Last updated
+        last_updated_query = select(func.max(Workflow.updated_at))
+        last_updated_result = await db.execute(last_updated_query)
+        last_updated = last_updated_result.scalar()
+
+        return StatsResponse(
+            total_workflows=total_workflows,
+            platforms=platforms,
+            countries=countries,
+            avg_popularity_score=round(avg_score, 2),
+            top_workflow=top_workflow,
+            last_updated=last_updated
+        )
+
+    except Exception as e:
+        logger.error(f"Error fetching stats: {e}")
+        raise HTTPException(status_code=500, detail="Internal Server Error")
 
 @app.post("/admin/refresh", response_model=RefreshResponse, tags=["Admin"])
 async def refresh_data(
