@@ -22,6 +22,14 @@
 
 ---
 
+# Project Artifacts
+
+## Technical Documentation
+[Technical Documentation](docs/README.md)
+*All technical details are documented in markdown files, including system architecture, implementation details and deployment instructions.*
+
+---
+
 ## 🌟 **Why This System?**
 
 <table>
@@ -104,17 +112,19 @@ uv run uvicorn app.main:app --reload
 
 ---
 
-## 📊 **Live API Demo**
+## 📊 **API Endpoints**
 
 <div align="center">
 
-| Endpoint | Description | Try It |
-|----------|-------------|---------|
-| `GET /workflows` | 📋 List trending workflows | [🔗 Try Now](http://localhost:8000/workflows?limit=5) |
-| `GET /stats` | 📈 System statistics | [🔗 Try Now](http://localhost:8000/stats) |
-| `POST /admin/refresh` | 🔄 Trigger data collection | [🔗 API Docs](http://localhost:8000/docs#/Admin/refresh_data_admin_refresh_post) |
+| Endpoint | Description | Usage |
+|----------|-------------|-------|
+| `GET /workflows` | 📋 List trending workflows | `curl http://localhost:8000/workflows?limit=5` |
+| `GET /stats` | 📈 System statistics | `curl http://localhost:8000/stats` |
+| `POST /admin/refresh` | 🔄 Trigger data collection | See [API Docs](http://localhost:8000/docs) |
 
 </div>
+
+> **Note**: Start the API server first using the Quick Start guide above
 
 ### 🎯 **Sample Response**
 
@@ -288,8 +298,8 @@ curl -X POST "http://localhost:8000/admin/refresh" \
 | **🚀 Deployment Guide** | Production deployment | [🌐 docs/DEPLOYMENT.md](docs/DEPLOYMENT.md) |
 
 ### 🌐 **Interactive Documentation**
-- **📱 Swagger UI**: [http://localhost:8000/docs](http://localhost:8000/docs)
-- **📚 ReDoc**: [http://localhost:8000/redoc](http://localhost:8000/redoc)
+- **📱 Swagger UI**: http://localhost:8000/docs (available after starting the server)
+- **📚 ReDoc**: http://localhost:8000/redoc (available after starting the server)
 
 ---
 

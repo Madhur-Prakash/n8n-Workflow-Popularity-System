@@ -81,7 +81,7 @@ docker-compose up -d
 docker-compose exec api uv run alembic upgrade head
 docker-compose exec api uv run python scripts/load_seed_data.py
 
-# ✅ Ready! API available at http://localhost:8000
+# ✅ Ready! API available at http://localhost:8000 (local only)
 ```
 
 </details>

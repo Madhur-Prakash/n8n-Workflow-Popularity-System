@@ -477,13 +477,13 @@ curl "http://localhost:8000/workflows?platform=youtube"  # Works!
 <tr>
 <td align="center" width="50%">
 <strong>📱 Swagger UI</strong><br>
-<a href="http://localhost:8000/docs">http://localhost:8000/docs</a><br>
-<em>Interactive API testing</em>
+http://localhost:8000/docs<br>
+<em>Interactive API testing (after starting server)</em>
 </td>
 <td align="center" width="50%">
 <strong>📚 ReDoc</strong><br>
-<a href="http://localhost:8000/redoc">http://localhost:8000/redoc</a><br>
-<em>Beautiful documentation</em>
+http://localhost:8000/redoc<br>
+<em>Beautiful documentation (after starting server)</em>
 </td>
 </tr>
 </table>
@@ -534,10 +534,11 @@ curl "http://localhost:8000/stats"
 ## 🎯 **Ready to Use the API?**
 
 <p>
-<a href="http://localhost:8000/docs"><img src="https://img.shields.io/badge/🧪-Try%20Interactive%20Docs-blue?style=for-the-badge&logo=swagger" alt="Try Docs"></a>
-<a href="http://localhost:8000/workflows?limit=5"><img src="https://img.shields.io/badge/📊-View%20Sample%20Data-green?style=for-the-badge&logo=json" alt="Sample Data"></a>
+<a href="../README.md#-quick-start-options"><img src="https://img.shields.io/badge/🚀-Start%20Server%20First-blue?style=for-the-badge&logo=rocket" alt="Start Server"></a>
 <a href="../README.md"><img src="https://img.shields.io/badge/📚-Back%20to%20Main%20Docs-orange?style=for-the-badge&logo=gitbook" alt="Main Docs"></a>
 </p>
+
+> **Note**: Start the API server using the [Quick Start guide](../README.md#-quick-start-options) before accessing the interactive documentation or endpoints.
 
 ---
 

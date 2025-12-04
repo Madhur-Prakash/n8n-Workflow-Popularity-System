@@ -92,10 +92,10 @@ Monitoring config
 | Document | Content | Audience |
 |----------|---------|----------|
 | **[API.md](API.md)** | REST endpoints, parameters, examples | Developers, Integrators |
+| **[DEPLOYMENT.md](DEPLOYMENT.md)** | Production setup, security, monitoring | DevOps, SysAdmins |
 | **[ARCHITECTURE.md](ARCHITECTURE.md)** | System design, patterns, scaling | Architects, DevOps |
 | **[COLLECTORS.md](COLLECTORS.md)** | Data collection, APIs, rate limits | Backend Developers |
 | **[SCORING.md](SCORING.md)** | Algorithms, formulas, validation | Data Scientists |
-| **[DEPLOYMENT.md](DEPLOYMENT.md)** | Production setup, security, monitoring | DevOps, SysAdmins |
 
 </div>
 
@@ -133,7 +133,7 @@ Monitoring config
 | Resource | Description | Link |
 |----------|-------------|------|
 | **Quick Start** | Get running in 60 seconds | [🚀 Start Here](../README.md#-quick-start-options) |
-| **API Testing** | Interactive Swagger UI | [🧪 Test API](API.md#-interactive-documentation) |
+| **API Documentation** | Complete endpoint reference | [🧪 API Docs](API.md#-api-endpoints) |
 | **Production Deploy** | Complete deployment guide | [🌐 Deploy Now](DEPLOYMENT.md#-deployment-options) |
 | **Troubleshooting** | Common issues & solutions | [🔧 Debug Guide](COLLECTORS.md#-troubleshooting-guide) |
 
