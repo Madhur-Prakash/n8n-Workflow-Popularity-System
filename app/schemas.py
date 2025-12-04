@@ -1,6 +1,9 @@
 from pydantic import BaseModel, Field
 from typing import Optional, List, Dict, Any
 from datetime import datetime
+import os
+import sys
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 class WorkflowBase(BaseModel):
     workflow_name: str = Field(..., description="Name of the workflow")

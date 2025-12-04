@@ -136,16 +136,16 @@ curl http://localhost:8000/
 
 ```bash
 # Get top 10 workflows
-curl "http://localhost:8000/workflows?limit=10"
+curl "-X GET http://localhost:8000/workflows?limit=10&offset=0"
 
 # Filter by YouTube videos from US
-curl "http://localhost:8000/workflows?platform=YouTube&country=US"
+curl "-X GET http://localhost:8000/workflows?platform=YouTube&country=US"
 
 # Pagination - page 3 with 20 results per page
-curl "http://localhost:8000/workflows?limit=20&offset=40"
+curl "-X GET http://localhost:8000/workflows?limit=20&offset=40"
 
 # Complex filtering
-curl "http://localhost:8000/workflows?platform=Forum&limit=5"
+curl "-X GET http://localhost:8000/workflows?platform=Forum&limit=5&offset=0"
 ```
 
 </details>
@@ -203,10 +203,10 @@ curl "http://localhost:8000/workflows?platform=Forum&limit=5"
 
 ```bash
 # Get workflow with ID 1
-curl "http://localhost:8000/workflows/1"
+curl "-X GET http://localhost:8000/workflows/1"
 
 # Get workflow with ID 42
-curl "http://localhost:8000/workflows/42"
+curl "-X GET http://localhost:8000/workflows/42"
 ```
 
 **Success Response (200)**:
@@ -248,7 +248,7 @@ curl "http://localhost:8000/workflows/42"
 
 **Example Request**:
 ```bash
-curl "http://localhost:8000/stats"
+curl "-X GET http://localhost:8000/stats"
 ```
 
 **Response**:
@@ -425,10 +425,10 @@ All errors return consistent JSON format:
 
 ```bash
 # Get first page
-curl "http://localhost:8000/workflows?limit=20&offset=0"
+curl " -X GET http://localhost:8000/workflows?limit=20&offset=0"
 
 # Check has_next in response, then get next page
-curl "http://localhost:8000/workflows?limit=20&offset=20"
+curl " -X GET http://localhost:8000/workflows?limit=20&offset=20"
 
 # Calculate total pages
 # total_pages = ceil(total / per_page)

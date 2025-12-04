@@ -1,7 +1,6 @@
 from sqlalchemy import Column, Integer, String, Float, DateTime, Text, JSON, Index
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.sql import func
-from typing import Optional
 
 Base = declarative_base()
 

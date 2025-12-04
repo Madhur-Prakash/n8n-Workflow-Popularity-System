@@ -6,6 +6,8 @@ from typing import Optional
 import logging
 from datetime import datetime
 import os
+import sys
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from db.session import get_db, create_tables, create_database_if_not_exists
 from db.models import Workflow
 from app.schemas import (

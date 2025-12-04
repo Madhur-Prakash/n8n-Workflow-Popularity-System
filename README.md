@@ -88,8 +88,8 @@ curl -LsSf https://astral.sh/uv/install.sh | sh  # macOS/Linux
 # or: powershell -c "irm https://astral.sh/uv/install.ps1 | iex"  # Windows
 
 # 2️⃣ Setup project
-git clone <repository>
-cd n8n-workflow-system
+git clone https://github.com/Madhur-Prakash/n8n-Workflow-Popularity-System.git
+cd n8n-Workflow-Popularity-System
 uv sync
 
 # 3️⃣ Configure environment
@@ -118,9 +118,9 @@ uv run uvicorn app.main:app --reload
 
 | Endpoint | Description | Usage |
 |----------|-------------|-------|
-| `GET /workflows` | 📋 List trending workflows | `curl http://localhost:8000/workflows?limit=5` |
-| `GET /stats` | 📈 System statistics | `curl http://localhost:8000/stats` |
-| `POST /admin/refresh` | 🔄 Trigger data collection | See [API Docs](http://localhost:8000/docs) |
+| `GET /workflows` | 📋 List trending workflows | `curl -X GET http://localhost:8000/workflows?limit=5&offset=0` |
+| `GET /stats` | 📈 System statistics | `curl -X GET http://localhost:8000/stats` |
+| `POST /admin/refresh` | 🔄 Trigger data collection | `curl -X POST http://localhost:8000/admin/refresh` |
 
 </div>
 
