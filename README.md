@@ -22,9 +22,9 @@
 
 ---
 
-# Project Artifacts
+## Project Artifacts
 
-## Technical Documentation
+### Technical Documentation
 [Technical Documentation](docs/README.md)
 *All technical details are documented in markdown files, including system architecture, implementation details and deployment instructions.*
 
