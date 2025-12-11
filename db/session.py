@@ -20,8 +20,8 @@ async def create_database_if_not_exists():
             db_name = DATABASE_URL.split("/")[-1]
             admin_url = DATABASE_URL.rsplit("/", 1)[0] + "/postgres"
             
-            admin_engine = create_async_engine(admin_url)
-            async with admin_engine.begin() as conn:
+            admin_engine = create_async_engine(admin_url, isolation_level="AUTOCOMMIT")
+            async with admin_engine.connect() as conn:
                 result = await conn.execute(text(f"SELECT 1 FROM pg_database WHERE datname='{db_name}'"))
                 if not result.fetchone():
                     await conn.execute(text(f"CREATE DATABASE {db_name}"))
